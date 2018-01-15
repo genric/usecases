@@ -17,7 +17,7 @@ Merge to the master branch and commit. Travis process will start.
 It will deploy in github pages
 
 ### To deploy in a dev environment:
-* In the other branches that are not `master`, a travis plan will be triggered
+* In the other branches that are not Master, a travis plan will be triggered
 * The deployment will on Firebase
 * If you want to change the user to deploy in another place, just replace the FIREBASE_TOKEN in Travis Environment Variables by yours (after firebase login)
 

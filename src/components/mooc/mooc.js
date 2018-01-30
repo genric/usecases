@@ -35,6 +35,18 @@ export default {
         return this.createCoursesMooc(collab, uc, week)
       } catch (e) { return Promise.reject(e) }
     },
+    addSetUserCell (content) {
+      try {
+        let parsed = JSON.parse(content)
+        let userid = window.location.href.match(/state=([^&]+)/)[1]
+        console.log('user', userid)
+        parsed.metadata['userid'] = userid
+        console.log('metadata', parsed.metadata)
+        return JSON.stringify(parsed)
+      } catch (e) {
+        console.error('Unable to set the user in metadata')
+      }
+    },
     async createCoursesMooc (collab, uc, week) { // cretes mooc -> weeks
       var that = this
       this.moocWeek = await this.getWeekInfo(uc, week)
@@ -108,7 +120,8 @@ export default {
         }
         if (!file.exists) {
           let content = await that.getDataRepo(originalFileId)
-          await that.setFileContent(file.uuid, JSON.stringify(content))
+          let newContent = that.addSetUserCell(content)
+          await that.setFileContent(file.uuid, newContent)
         }
         newFileId = file.uuid
         if (!appInfo.justcopy) {

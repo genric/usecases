@@ -3,9 +3,6 @@ node_js: node
 branches:
   except:
   - master
-cache:
-  directories:
-  - node_modules # NPM packages
 install: npm install
 script:
 - npm run firebase

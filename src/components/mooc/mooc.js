@@ -36,16 +36,19 @@ export default {
       } catch (e) { return Promise.reject(e) }
     },
     addSetUserCell (content) {
-      try {
-        let parsed = JSON.parse(content)
-        let userid = window.location.href.match(/state=([^&]+)/)[1]
-        console.log('user', userid)
-        parsed.metadata['userid'] = userid
-        console.log('metadata', parsed.metadata)
-        return JSON.stringify(parsed)
-      } catch (e) {
-        console.error('Unable to set the user in metadata')
+      let parsed = content
+      let userid = null
+
+      if (typeof (content) === 'string') {
+        parsed = JSON.parse(content)
       }
+      let queryParam = window.location.href.match(/state=([^&]+)/)
+      if (queryParam) {
+        userid = queryParam[1]
+        parsed.metadata['userid'] = userid
+      }
+
+      return JSON.stringify(parsed)
     },
     async createCoursesMooc (collab, uc, week) { // cretes mooc -> weeks
       var that = this

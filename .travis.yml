@@ -1,10 +1,11 @@
 language: node_js
-node_js: node
+node_js: 8
 branches:
   except:
   - master
+install: npm install
 script:
-- npm install
+- cat /home/travis/.npm/_logs/2018-01-31T07_48_54_782Z-debug.log
 - npm run firebase
 - npm i firebase-tools
 - firebase deploy --public="public" --project="dev-usecases" --token=$FIREBASE_TOKEN

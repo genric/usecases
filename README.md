@@ -27,7 +27,7 @@ This will add the the variable FIREBASE_TOKEN in travis file
 ### If Single cell models change:
 This [jenkins plan](https://bbpcode.epfl.ch/ci/job/platform.lbologna_update_data/) is executed when there is a change in the repo.
 
-Otherwise, for manual step:
+Otherwise, for manual stepA:
 
 * Download the optimizations models locally.
 * Copy the script located into config_files/**create_singlecellmodeling_structure.py** to this new local respository.
